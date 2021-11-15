@@ -58,18 +58,16 @@ namespace SocialDistancingForSidewalks
             if (!DA.GetDataList(0, surfaces)) return;
 
             List<List<Line>> centrelinesForSurfaces = new List<List<Line>>();
-            List<List<Line>> measurementLines = new List<List<Line>>();
             List<List<double>> measurementLinesLengths = new List<List<double>>();
             List<List<Point3d>> samplePoints = new List<List<Point3d>>();
 
             for (int i = 0; i < surfaces.Count; i++)
             {
                 // Find centrelines
-                var centrelines = Utils.FindCenterlinesForSurface(surfaces[i]);
+                var centrelines = surfaces[i].FindCentrelines();
                 centrelinesForSurfaces.Add(centrelines);
 
-
-                // Other elements: test points and calculated "width" for this test point
+               // Other elements: test points and calculated "width" for this test point
                 var testPoints = new List<Point3d>();
                 var lines = new List<Line>();
                 var widths = new List<double>();
@@ -84,31 +82,24 @@ namespace SocialDistancingForSidewalks
                     {
                         double parameter;
                         edge.ClosestPoint(p, out parameter);
-                        var point = edge.PointAt(parameter);
-                        
-                        var line = new Line(p, point);
+                        var line = new Line(p, edge.PointAt(parameter));
                         lines.Add(line);
 
                         testPoints.Add(line.PointAt(0.5));
 
                         // Multiplication * 2 comes from assumption that line goes from centreline to edge
                         // therefore, the width of brep in this test point is twice this value
-                        var length = line.Length;
-                        widths.Add(length*2);
+                        widths.Add(line.Length * 2);
                     }
-
                 }
-                measurementLines.Add(lines);
                 measurementLinesLengths.Add(widths);
                 samplePoints.Add(testPoints);
             }
-
 
             // Finally assign the spiral to the output parameter.
             DA.SetDataTree(0, Utils.ListOfListsToTree(centrelinesForSurfaces));
             DA.SetDataTree(1, Utils.ListOfListsToTree(samplePoints));
             DA.SetDataTree(2, Utils.ListOfListsToTree(measurementLinesLengths));
-
         }
 
 

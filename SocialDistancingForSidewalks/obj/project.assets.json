@@ -87,11 +87,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JSzychowska\\source\\repos\\SocialDistancingForSidewalks\\SocialDistancingForSidewalks.csproj",
+      "projectUniqueName": "C:\\Users\\JSzychowska\\source\\distancing-on-sidewalks\\SocialDistancingForSidewalks\\SocialDistancingForSidewalks.csproj",
       "projectName": "SocialDistancingForSidewalks",
-      "projectPath": "C:\\Users\\JSzychowska\\source\\repos\\SocialDistancingForSidewalks\\SocialDistancingForSidewalks.csproj",
+      "projectPath": "C:\\Users\\JSzychowska\\source\\distancing-on-sidewalks\\SocialDistancingForSidewalks\\SocialDistancingForSidewalks.csproj",
       "packagesPath": "C:\\Users\\JSzychowska\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JSzychowska\\source\\repos\\SocialDistancingForSidewalks\\obj\\",
+      "outputPath": "C:\\Users\\JSzychowska\\source\\distancing-on-sidewalks\\SocialDistancingForSidewalks\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

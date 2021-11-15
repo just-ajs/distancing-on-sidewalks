@@ -55,17 +55,11 @@ namespace SocialDistancingForSidewalks.Components
             if (!DA.GetDataList(2, locationPoints)) return;
             DA.GetData(3, ref limit);
 
-            // Find distance to attraction location points
-            List<double> distances = new List<double>();
-            for (int i = 0; i < testPoints.Count; i++)
-            {
-                var distance = Utils.ClosestPointDistance(testPoints[i], locationPoints);
-                distances.Add(distance);
-            }
+            //// Find distance to attraction location points
+            List<double> distances = testPoints.Select(testPoint => Utils.ClosestPointDistance(testPoint, locationPoints)).ToList();
 
             List<double> newWeights = new List<double>();
             List<double> onlyNewWeights = new List<double>();
-
 
             // If distance is within relevant radius, reweight the number proportionally
             for (int i = 0; i < testPointsWeights.Count; i++)
@@ -77,7 +71,6 @@ namespace SocialDistancingForSidewalks.Components
 
                     var weight = testPointsWeights[i] * proportion;
                     newWeights.Add(weight);
-
                 }
                 else
                 {
@@ -86,7 +79,6 @@ namespace SocialDistancingForSidewalks.Components
                 }
             }
 
-            
             DA.SetDataList(0, newWeights);
             DA.SetDataList(1, onlyNewWeights);
         }

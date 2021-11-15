@@ -70,7 +70,7 @@ namespace SocialDistancingForSidewalks
         #endregion
 
         // The logic of function follows the workflow idea from here: https://discourse.mcneel.com/t/extract-centreline-of-polylines/85133/15
-        public static List<Line> FindCenterlinesForSurface(Brep brep)
+        public static List<Line> FindCentrelines(this Brep brep)
         {
             List<Line> centreLines = new List<Line>();
 
@@ -81,10 +81,7 @@ namespace SocialDistancingForSidewalks
             // for edges separately
             foreach (Curve edge in surfaceEdgeCurvesJoined)
             {
-                // Divide surface edges by distance
-                var parameters = edge.DivideByLength(5f, false);
-                var points = parameters.Select(param => edge.PointAt(param)).ToList();
-                allPoints.AddRange(points);
+                allPoints.AddRange(DivideByLengthAndGetPoints(edge, 5));
             }
 
             // Find height to move the lines (the default Voronoi will be placed on Plane 0,0,0)
@@ -115,8 +112,16 @@ namespace SocialDistancingForSidewalks
             return centreLines;
         }
 
+        private static List<Point3d> DivideByLengthAndGetPoints(Curve c, double distance)
+        {
+            // Divide surface edges by distance
+            var parameters = c.DivideByLength(distance, false);
+            var points = parameters.Select(param => c.PointAt(param)).ToList();
+            return points;
+        }
+
         // This function copied from here: https://discourse.mcneel.com/t/voronoi-c/91379/5
-        public static List<Polyline> GetVoronoiPolylinesFromPoints(List<Point3d> points)
+        private static List<Polyline> GetVoronoiPolylinesFromPoints(List<Point3d> points)
         {
             // Create a boundingbox and get its corners
             BoundingBox bb = new BoundingBox(points);

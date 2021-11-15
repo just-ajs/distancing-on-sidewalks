@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I2+EHWJ1c+PecRthBxAijx8Eu0Hic/Dmov2B6zEEAu+7q0jy6Dm9F08Siom/PUr8+5yPqr687H1X7vRsztKDBg==",
+  "dgSpecHash": "roqgdIWrZN4st13mDutRaiGeFRmR+qOW0uP3i16W6UGmx88KT3rAN3Mu3mN4WLPIrJh6FKEmhbAxfxaSqdPWWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\JSzychowska\\source\\repos\\SocialDistancingForSidewalks\\SocialDistancingForSidewalks.csproj",
+  "projectFilePath": "C:\\Users\\JSzychowska\\source\\distancing-on-sidewalks\\SocialDistancingForSidewalks\\SocialDistancingForSidewalks.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JSzychowska\\.nuget\\packages\\grasshopper\\7.4.21078.1001\\grasshopper.7.4.21078.1001.nupkg.sha512",
     "C:\\Users\\JSzychowska\\.nuget\\packages\\rhinocommon\\7.4.21078.1001\\rhinocommon.7.4.21078.1001.nupkg.sha512"
