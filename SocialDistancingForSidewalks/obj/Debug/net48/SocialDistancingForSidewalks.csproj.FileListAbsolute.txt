@@ -9,3 +9,12 @@ C:\Users\JSzychowska\source\repos\SocialDistancingForSidewalks\obj\Debug\net48\S
 C:\Users\JSzychowska\source\repos\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.gha
 C:\Users\JSzychowska\source\repos\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.pdb
 C:\Users\JSzychowska\source\repos\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.csproj.AssemblyReference.cache
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.csproj.AssemblyReference.cache
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.Properties.Resources.resources
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.csproj.GenerateResource.cache
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.AssemblyInfoInputs.cache
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.AssemblyInfo.cs
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.csproj.CoreCompileInputs.cache
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.gha
+C:\Users\JSzychowska\source\distancing-on-sidewalks\SocialDistancingForSidewalks\obj\Debug\net48\SocialDistancingForSidewalks.pdb

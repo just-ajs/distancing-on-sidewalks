@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
@@ -23,9 +23,9 @@ namespace SocialDistancingForSidewalks.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddBrepParameter("Surface", "Srf", "Surface", GH_ParamAccess.list);
+            pManager.AddSurfaceParameter("Surface", "Srf", "Surface", GH_ParamAccess.list);
             pManager.AddNumberParameter("Walking speed", "Wlkspeed", "Average walking mile speed per hour", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Hour", "H", "Hour of the day for estimate", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Hour", "H", "Hour of the day for estimate", GH_ParamAccess.item);
 
         }
 
@@ -34,7 +34,8 @@ namespace SocialDistancingForSidewalks.Components
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddNumberParameter("People estimate", " PplEst", "Estimate of people passing this surface every minute", GH_ParamAccess.list);
+            pManager.AddIntegerParameter("People estimate", " PplEst", "Estimate of people passing this surface every minute", GH_ParamAccess.list);
+
         }
 
         /// <summary>
@@ -45,17 +46,17 @@ namespace SocialDistancingForSidewalks.Components
         {
             List<Brep> surfaces = new List<Brep>();
             double speed = 3;
-            double hour = 0;
+            int hour = 0;
 
             if (!DA.GetDataList(0, surfaces)) return;
             if (!DA.GetData(1, ref speed)) return;
             if (!DA.GetData(2, ref hour)) return;
 
 
-            // hard coded for now 
-            // average data based on: https://www.mdpi.com/2071-1050/12/19/7863/htm
-            // would be interesting to add inputs like retail use etc and model based on that
-            int[] activityPerHour = new int[]
+            // Average number of people observed in the study: https://www.mdpi.com/2071-1050/12/19/7863/htm 
+            // The numbers were different according to the month and the type of neighbourhood
+            // Values below are generic, looking at the average
+            int[] activity = new int[]
             {
                 300, 200, 100, 50, 50, 300,
                 1000, 1200, 1500, 1700, 1500,
@@ -64,41 +65,25 @@ namespace SocialDistancingForSidewalks.Components
                 1000, 900, 800
             };
 
-            var hourActivity = activityPerHour[(int)hour];
+            List<int> peopleCount = surfaces.Select(x => EstimatePeopleCount(x, speed, activity[hour])).ToList();
 
-            List<double> peopleEstimatePerHour = new List<double>();
-            foreach (Brep brep in surfaces)
-            {
-                // distance extracted from brep edge
-                var walkingMilesPerBrep = GetWalkingDistanceForBrep(brep);
-
-                // how long doest it take to walk this distance? 
-                var timeToWalk = walkingMilesPerBrep / speed;
-
-                // every person during this hour will take the time to walk it
-                // calculate how many people on average is at once during this hour
-                var peoplePerHour = Math.Round(timeToWalk * hourActivity);
-                peopleEstimatePerHour.Add(peoplePerHour);
-            }
-
-
-            DA.SetDataList(0, peopleEstimatePerHour);
+            DA.SetDataList(0, peopleCount);
         }
 
-        double GetWalkingDistanceForBrep(Brep brep)
+        int EstimatePeopleCount(Brep brep, double walkingSpeed, int numberOfPeople)
         {
-            var edges = Utils.GetBrepJoinedEdges(brep);
+            // distance extracted from brep edge
+            var walkingMilesPerBrep = Utils.GetWalkingDistanceForBrep(brep);
 
-            double edgeTotalLength = 0;
+            // how long doest it take to walk this distance? 
+            var timeToWalk = walkingMilesPerBrep / walkingSpeed;
 
-            for (int i = 0; i < edges.Count; i++)
-            {
-                edgeTotalLength += edges[i].GetLength();
-            }
-
-            return Utils.FeetToMiles(edgeTotalLength / 2.0);
+            // every person during this hour will take the time to walk it
+            // calculate how many people on average is at once during this hour
+            return (int)Math.Round(timeToWalk * numberOfPeople);
         }
 
+       
         protected override System.Drawing.Bitmap Icon => Properties.Resources.PeopleEstimate;
 
         public override Guid ComponentGuid => new Guid("A1D448CB-C30A-44C8-BBAE-234046A1BCA7");

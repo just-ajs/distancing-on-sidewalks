@@ -41,7 +41,7 @@ namespace SocialDistancingForSidewalks
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddLineParameter("Centrelines", "CntrLn", "Centelines for provided surfaces.", GH_ParamAccess.tree);
-            pManager.AddPointParameter("SamplePoints", "SamplPt", "Points that has calculated weight", GH_ParamAccess.tree);
+            pManager.AddPointParameter("Sample Points", "SamplPt", "Points that has calculated weight", GH_ParamAccess.tree);
             pManager.AddNumberParameter("Width", "", "", GH_ParamAccess.tree);
 
         }

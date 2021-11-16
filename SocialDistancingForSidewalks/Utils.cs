@@ -67,7 +67,7 @@ namespace SocialDistancingForSidewalks
 
             return distance;
         }
-        #endregion
+        
 
         // The logic of function follows the workflow idea from here: https://discourse.mcneel.com/t/extract-centreline-of-polylines/85133/15
         public static List<Line> FindCentrelines(this Brep brep)
@@ -162,7 +162,25 @@ namespace SocialDistancingForSidewalks
             }
             return polylines;
         }
+        #endregion
+
+
+        public static double GetWalkingDistanceForBrep(Brep brep)
+        {
+            var edges = Utils.GetBrepJoinedEdges(brep);
+
+            double edgeTotalLength = 0;
+
+            for (int i = 0; i < edges.Count; i++)
+            {
+                edgeTotalLength += edges[i].GetLength();
+            }
+
+            return Utils.FeetToMiles(edgeTotalLength / 2.0);
+        }
     }
 
-    
+
+
+   
 }
