@@ -24,8 +24,8 @@ The example file is using Elefront and Urbano plugin. Those can be downloaded fr
 ## Functionality<br />
 
 ### Data extraction<br />
-Firt part of the Grasshopper script (disabled) is reading [NYC Open Data Sidewalk](https://data.cityofnewyork.us/City-Government/Sidewalk/vfx9-tbb6) and converting information into polysurfaces.
-Those polysurfaces are baked and used in the second part of workflow.
+Firt part of the Grasshopper script (disabled) is reading [NYC Open Data Sidewalk](https://data.cityofnewyork.us/City-Government/Sidewalk/vfx9-tbb6) and converting information into surfaces.
+Those surfaces are baked and used in the second part of workflow.
 
 ### Sidewalk evaluation<br />
 Three Grasshopper components are available for the sidewalk evaluation. 
