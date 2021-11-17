@@ -31,13 +31,13 @@ Those polysurfaces are baked and used in the second part of workflow.
 Three Grasshopper components are available for the sidewalk evaluation. 
 
 **SurfaceCentreline**<br />
-This component will attempt to generate centrelines from the surface input. 
+This component attempts to generate centrelines from the surface input. 
 The logic of this component is following: https://discourse.mcneel.com/t/extract-centreline-of-polylines/85133/15
 ![definition2](https://user-images.githubusercontent.com/35227625/142051934-24c873e4-62ac-4bf3-8bbb-9f41e4f494f4.png)
 
 
 **PeopleCountEstimate**<br />
-This component will take into account the sidewalk geometry, average walking speed and time of the day. Based on this information, and the average data from study [Exploring Walking Behavior in the Streets of New York City Using Hourly Pedestrian Count Data](https://www.mdpi.com/2071-1050/12/19/7863/htm#fig_body_display_sustainability-12-07863-f002)., component will estimate how many people is likely to be on this sidewalk at the same time. This number can be later used for the visualisation purposes or for the circle packing algorithm.
+This component takes into account the sidewalk geometry, average walking speed and time of the day. Based on this information, and the average data from study [Exploring Walking Behavior in the Streets of New York City Using Hourly Pedestrian Count Data](https://www.mdpi.com/2071-1050/12/19/7863/htm#fig_body_display_sustainability-12-07863-f002)., component will estimate how many people is likely to be on this sidewalk at the same time. This number can be later used for the visualisation purposes or for the circle packing algorithm.
 
 ![definition](https://user-images.githubusercontent.com/35227625/142049652-2a1da68b-3a20-45c2-b186-2baaf1e72f2a.png)
 
